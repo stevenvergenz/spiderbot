@@ -1,13 +1,11 @@
 #pragma once
-#include <memory>
-#include <iostream>
-#include "core/periodic.h"
+#include "core/ticker.h"
 
-class Robot : public Periodic
+class Robot : public Ticker
 {
 public:
 	static const Robot instance;
 	
 	Robot();
-	void periodic();
+	void tick();
 };

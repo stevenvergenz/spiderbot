@@ -2,12 +2,12 @@
 
 const Robot Robot::instance;
 
-Robot::Robot() : Periodic()
+Robot::Robot()
 {
-	std::cout << "Initializing robot" << std::endl;
+	schedule();
 }
 
-void Robot::periodic()
+void Robot::tick()
 {
 	
 }
