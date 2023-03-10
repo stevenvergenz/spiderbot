@@ -1,11 +1,17 @@
 #pragma once
-#include "periodic.h"
+#include <stdlib.h>
+#include "ticker.h"
+
+class Subsystem;
+
 #include "command.h"
 
-class Subsystem : public Periodic
+class Subsystem : public Ticker
 {
 public:
-	void claim(Command claimant);
+	virtual void tick();
+	void claim(Command* owner);
+	void release(Command* owner);
 
 private:
 	Command* activeCommand;

@@ -11,6 +11,9 @@ target_sources("main"
 	PUBLIC
 	"src/main.cpp"
 	"src/robot.cpp"
-	"src/core/ticker.cpp")
+	"src/core/ticker.cpp"
+	"src/core/command.cpp"
+	"src/core/subsystem.cpp"
+	"src/commands/blink.cpp")
 
 target_include_directories("main" PRIVATE "src")

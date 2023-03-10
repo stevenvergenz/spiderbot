@@ -1,15 +1,25 @@
 #pragma once
+#include <stdarg.h>
+#include "ticker.h"
+
+class Command;
+
 #include "subsystem.h"
 
-class Command : public Periodic
+class Command : public Ticker
 {
 public:
-	void periodic();
-	virtual void initialize();
-	virtual void execute();
-	virtual bool isFinished();
+	void tick();
 	virtual void end(bool isInterrupted);
 
 protected:
-	void addRequirements(...args);
+	Command();
+	virtual void initialize();
+	virtual void execute();
+	virtual bool isFinished() = 0;
+	void addRequirements(Subsystem* req = nullptr);
+
+private:
+	bool isInitialized;
+	Subsystem* requirement;
 };
