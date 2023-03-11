@@ -3,7 +3,7 @@
 	"tasks": [
 		{
 			"type": "cmake",
-			"label": "CMake: build",
+			"label": "CMake: build main",
 			"command": "build",
 			"targets": [
 				"main"
@@ -11,6 +11,23 @@
 			"group": "build",
 			"problemMatcher": [],
 			"detail": "CMake template build task"
+		},
+		{
+			"type": "cmake",
+			"label": "CMake: build test",
+			"command": "build",
+			"targets": [
+				"test"
+			],
+			"group": "build",
+			"problemMatcher": [],
+			"detail": "CMake template build task"
+		},
+		{
+			"type": "shell",
+			"label": "Deploy: test",
+			"group": "test",
+			"command": "pkexec avrdude -v -c /etc/avrdude/avrdude.conf -p atmega328p -c stk500v1 -P /dev/ttyACM0 -b 19200 -U flash:w:build/test:e"
 		}
 	]
 }
