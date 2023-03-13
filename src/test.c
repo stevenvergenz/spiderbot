@@ -8,7 +8,7 @@ int main()
 	bool lit = false;
 	while (1)
 	{
-		if ((counter = (counter + 1) % 10000) == 0)
+		if ((counter = (counter + 1) % 100000) == 0)
 		{
 			digitalWrite(LED_BUILTIN, (lit = !lit) ? HIGH : LOW);
 		}

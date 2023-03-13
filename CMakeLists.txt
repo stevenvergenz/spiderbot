@@ -24,12 +24,14 @@ set(BUILD_MCU -mmcu=avr5 -D__AVR_ATmega328P__ -D__AVR_DEVICE_NAME__=atmega328p)
 set(BUILD_F_CPU 16000000L)
 set(RUNTIME_IDE_VERSION 10806)
 set(BUILD_BOARD AVR_DUEMILANOVE)
-set(BUILD_ARCH ARM)
+set(BUILD_ARCH AVR)
 add_compile_options(${COMPILER_FLAGS} ${BUILD_MCU} -DF_CPU=${BUILD_F_CPU} -DARDUINO=${RUNTIME_IDE_VERSION} -DARDUINO_${BUILD_BOARD} -DARDUINO_ARCH_${BUILD_ARCH})
 
 
-add_executable(test src/test.c)
-target_link_libraries(test arduino-core)
+add_executable(test-build src/test.c)
+target_link_libraries(test-build arduino-core)
+
+add_executable(test-deploy src/test-deploy.c)
 
 add_executable(main)
 target_sources(main
@@ -44,6 +46,9 @@ target_sources(main
 
 target_include_directories(main PRIVATE src)
 target_link_libraries(main arduino-core)
+
+add_custom_command(TARGET main POST_BUILD
+	COMMAND avr-objcopy -O ihex -j.text -j.data $<TARGET_FILE:main> $<TARGET_FILE:main>.hex)
 
 set(ARDUINO_PATH /home/steven/.arduino15/packages/arduino)
 

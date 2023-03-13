@@ -14,10 +14,21 @@
 		},
 		{
 			"type": "cmake",
-			"label": "CMake: build test",
+			"label": "CMake: build test-build",
 			"command": "build",
 			"targets": [
-				"test"
+				"test-build"
+			],
+			"group": "build",
+			"problemMatcher": [],
+			"detail": "CMake template build task"
+		},
+		{
+			"type": "cmake",
+			"label": "CMake: build test-deploy",
+			"command": "build",
+			"targets": [
+				"test-deploy"
 			],
 			"group": "build",
 			"problemMatcher": [],
@@ -25,9 +36,21 @@
 		},
 		{
 			"type": "shell",
-			"label": "Deploy: test",
+			"label": "Deploy: test-build",
 			"group": "test",
-			"command": "pkexec avrdude -v -c /etc/avrdude/avrdude.conf -p atmega328p -c stk500v1 -P /dev/ttyACM0 -b 19200 -U flash:w:build/test:e"
+			"command": "avrdude -v -p atmega328p -c arduino -P /dev/ttyACM0 -b 115200 -U flash:w:build/test-build:e"
+		},
+		{
+			"type": "shell",
+			"label": "Deploy: test-deploy",
+			"group": "test",
+			"command": "avrdude -v -p atmega328p -c arduino -P /dev/ttyACM0 -b 115200 -U flash:w:build/test-deploy:e"
+		},
+		{
+			"type": "shell",
+			"label": "Deploy: main",
+			"group": "test",
+			"command": "avrdude -v -p atmega328p -c arduino -P /dev/ttyACM0 -b 115200 -U flash:w:build/main.hex:i"
 		}
 	]
 }
