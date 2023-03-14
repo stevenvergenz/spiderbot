@@ -9,6 +9,7 @@ public:
 
 	void schedule();
 	void unschedule();
+	bool isScheduled();
 
 private:
 	static const uint8 maxTickers = 16;

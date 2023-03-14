@@ -1,10 +1,8 @@
 #include "robot.h"
 
-const Robot Robot::instance;
-
-Robot::Robot()
+Robot::Robot() : Ticker(), blinkMorse("SOS")
 {
-	schedule();
+	blinkMorse.schedule();
 }
 
 void Robot::tick()

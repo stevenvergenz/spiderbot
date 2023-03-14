@@ -38,19 +38,19 @@
 			"type": "shell",
 			"label": "Deploy: test-build",
 			"group": "test",
-			"command": "avrdude -v -p atmega328p -c arduino -P /dev/ttyACM0 -b 115200 -U flash:w:build/test-build:e"
+			"command": "avrdude -v -C /home/steven/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17/etc/avrdude.conf -p atmega328p -c arduino -P /dev/ttyACM0 -b 115200 -D -U flash:w:build/test-build:e"
 		},
 		{
 			"type": "shell",
 			"label": "Deploy: test-deploy",
 			"group": "test",
-			"command": "avrdude -v -p atmega328p -c arduino -P /dev/ttyACM0 -b 115200 -U flash:w:build/test-deploy:e"
+			"command": "avrdude -v -C /home/steven/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17/etc/avrdude.conf -p atmega328p -c arduino -P /dev/ttyACM0 -b 115200 -D -U flash:w:build/test-deploy:e"
 		},
 		{
 			"type": "shell",
 			"label": "Deploy: main",
 			"group": "test",
-			"command": "avrdude -v -p atmega328p -c arduino -P /dev/ttyACM0 -b 115200 -U flash:w:build/main.hex:i"
+			"command": "avrdude -v -C /home/steven/.arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17/etc/avrdude.conf -p atmega328p -c arduino -P /dev/ttyACM0 -b 115200 -D -U flash:w:build/main.hex:i"
 		}
 	]
 }

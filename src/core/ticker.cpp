@@ -22,6 +22,11 @@ void Ticker::unschedule()
 	tickerSlot = 0;
 }
 
+bool Ticker::isScheduled()
+{
+	return Ticker::tickers[tickerSlot] == this;
+}
+
 void Ticker::updateTickers()
 {
 	for (Ticker* t : Ticker::tickers)

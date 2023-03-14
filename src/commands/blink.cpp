@@ -1,28 +1,41 @@
 #include "blink.h"
 
-BlinkCommand::BlinkCommand() : Command()
+BlinkCommand::BlinkCommand(Pattern pattern) : Command()
 {
-
+	_pattern = pattern;
 }
 
 void BlinkCommand::initialize()
 {
 	addRequirements(&Led::instance());
-	counter = 0;
+	_counter = 0;
+	Serial.println(_pattern);
 }
 
 void BlinkCommand::execute()
 {
-	if (counter == 0)
+	int ticks = (_pattern & 0b1) ? BlinkCommand::s_longTicks : BlinkCommand::s_shortTicks;
+	if (_counter < ticks)
 	{
-		Led::instance().setLit(!Led::instance().isLit());
+		Led::instance().setLit(true);
+		_counter++;
 	}
-	counter = (counter + 1) % 10000;
+	else if (_counter == ticks)
+	{
+		Led::instance().setLit(false);
+		_counter++;
+	}
+	else
+	{
+		_pattern = _pattern >> 1;
+		_counter = 0;
+		Serial.println("Ending letter");
+	}
 }
 
 bool BlinkCommand::isFinished()
 {
-	return false;
+	return _pattern <= 0b1;
 }
 
 void BlinkCommand::end(bool isInterrupted)

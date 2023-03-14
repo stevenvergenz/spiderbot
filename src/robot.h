@@ -1,11 +1,15 @@
 #pragma once
 #include "core/ticker.h"
+#include "commands/blinkMorse.h"
 
 class Robot : public Ticker
 {
 public:
-	static const Robot instance;
+	static Robot instance;
 	
 	Robot();
 	void tick();
+
+private:
+	BlinkMorseCommand blinkMorse;
 };
