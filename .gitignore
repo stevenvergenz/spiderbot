@@ -1,4 +1,6 @@
-build
+# Platform.IO build dir
+.pio
+
 # Prerequisites
 *.d
 

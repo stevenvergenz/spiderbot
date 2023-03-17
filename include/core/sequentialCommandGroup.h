@@ -16,7 +16,7 @@ protected:
 
 private:
 	Vector<Command*>* _commands;
-	uint8 activeCommandIdx;
+	uint8_t activeCommandIdx;
 
 	Command* activeCommand();
 };

@@ -1,11 +1,14 @@
-#include "blinkMorse.h"
+#include "commands/blinkMorse.h"
 
-BlinkMorseCommand::BlinkMorseCommand(char* phrase) : SequentialCommandGroup(stringToCommandList(phrase))
+constexpr const Pattern BlinkMorseCommand::MORSE[26];
+
+BlinkMorseCommand::BlinkMorseCommand(const char* phrase)
+	: SequentialCommandGroup(stringToCommandList(phrase))
 {
 
 }
 
-Vector<Command*>* BlinkMorseCommand::stringToCommandList(char* phrase)
+Vector<Command*>* BlinkMorseCommand::stringToCommandList(const char* phrase)
 {
 	int length;
 	for (length = 0; phrase[length] != '\0'; length++) { }

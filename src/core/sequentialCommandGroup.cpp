@@ -1,4 +1,4 @@
-#include "sequentialCommandGroup.h"
+#include "core/sequentialCommandGroup.h"
 
 SequentialCommandGroup::SequentialCommandGroup(Vector<Command*>* commands) : Command()
 {

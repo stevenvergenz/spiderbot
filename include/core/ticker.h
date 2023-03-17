@@ -1,4 +1,5 @@
 #pragma once
+#include <Arduino.h>
 #include "../constants.h"
 
 class Ticker
@@ -12,8 +13,8 @@ public:
 	bool isScheduled();
 
 private:
-	static const uint8 maxTickers = 16;
+	static const uint8_t maxTickers = 16;
 	static Ticker* tickers[maxTickers];
-	static uint16 tickerSlots;
-	uint8 tickerSlot;
+	static uint16_t tickerSlots;
+	uint8_t tickerSlot;
 };

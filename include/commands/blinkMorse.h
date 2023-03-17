@@ -1,12 +1,12 @@
 #pragma once
 #include <Vector.h>
-#include "../core/sequentialCommandGroup.h"
-#include "blink.h"
+#include "core/sequentialCommandGroup.h"
+#include "commands/blink.h"
 
 class BlinkMorseCommand : public SequentialCommandGroup
 {
 private:
-	static constexpr Pattern MORSE[]
+	static constexpr Pattern MORSE[26]
 	{
 		0b110,   // A
 		0b10001, // B
@@ -36,12 +36,12 @@ private:
 		0b10011  // Z
 	};
 
-	static constexpr Pattern ERR = 0x111111;
+	static constexpr Pattern ERR = 0b111111;
 
 public:
-	BlinkMorseCommand(char* phrase);
+	BlinkMorseCommand(const char* phrase);
 	~BlinkMorseCommand();
 
 private:
-	static Vector<Command*>* stringToCommandList(char* phrase);
+	static Vector<Command*>* stringToCommandList(const char* phrase);
 };

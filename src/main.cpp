@@ -5,7 +5,7 @@
 int main(int argc, char **argv)
 {
 	Serial.begin(9600);
-	Serial.println("Starting");
+	Serial.println("abcdefg");
 	
 	Robot robot;
 

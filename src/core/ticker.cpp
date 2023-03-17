@@ -1,13 +1,13 @@
-#include "ticker.h"
+#include "core/ticker.h"
 
 Ticker* Ticker::tickers[Ticker::maxTickers];
-uint16 Ticker::tickerSlots = 0;
+uint16_t Ticker::tickerSlots = 0;
 
 void Ticker::schedule()
 {
-	for (uint8 slot = 0; slot < Ticker::maxTickers; slot++)
+	for (uint8_t slot = 0; slot < Ticker::maxTickers; slot++)
 	{
-		uint16 slotFlag = 1 << slot;
+		uint16_t slotFlag = 1 << slot;
 		if (!(Ticker::tickerSlots & slotFlag))
 		{
 			Ticker::tickers[slot] = this;

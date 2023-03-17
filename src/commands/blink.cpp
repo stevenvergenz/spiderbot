@@ -1,4 +1,4 @@
-#include "blink.h"
+#include "commands/blink.h"
 
 BlinkCommand::BlinkCommand(Pattern pattern) : Command()
 {
@@ -9,7 +9,6 @@ void BlinkCommand::initialize()
 {
 	addRequirements(&Led::instance());
 	_counter = 0;
-	Serial.println(_pattern);
 }
 
 void BlinkCommand::execute()
@@ -29,7 +28,6 @@ void BlinkCommand::execute()
 	{
 		_pattern = _pattern >> 1;
 		_counter = 0;
-		Serial.println("Ending letter");
 	}
 }
 
