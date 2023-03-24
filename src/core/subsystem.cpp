@@ -1,5 +1,15 @@
 #include "core/subsystem.h"
 
+Subsystem::Subsystem()
+{
+	schedule();
+}
+
+Subsystem::~Subsystem()
+{
+	unschedule();
+}
+
 void Subsystem::tick() {}
 
 void Subsystem::claim(Command* owner)

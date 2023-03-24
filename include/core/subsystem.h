@@ -13,6 +13,10 @@ public:
 	void claim(Command* owner);
 	void release(Command* owner);
 
+protected:
+	Subsystem();
+	~Subsystem();
+
 private:
 	Command* activeCommand;
 };

@@ -17,10 +17,12 @@ Vector<Command*>* BlinkMorseCommand::stringToCommandList(const char* phrase)
 	Vector<Command*>* list = new Vector<Command*>();
 	list->setStorage(buffer, length, 0);
 
-	for (char i = *phrase; i != '\0'; i++)
+	for (const char* i = phrase; *i != '\0'; i++)
 	{
-		Pattern p = isUpperCase(i) ? MORSE[i - 'A'] : isLowerCase(i) ? MORSE[i - 'a'] : ERR;
-		list->push_back(new BlinkCommand(p));
+		Serial.print("Building blink command for ");
+		Serial.println(*i);
+		Pattern p = isUpperCase(*i) ? MORSE[*i - 'A'] : isLowerCase(*i) ? MORSE[*i - 'a'] : ERR;
+		list->push_back(new BlinkCommand(p, i));
 	}
 
 	return list;

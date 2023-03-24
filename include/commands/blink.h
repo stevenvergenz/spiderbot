@@ -1,6 +1,7 @@
 #pragma once
-#include "../core/command.h"
-#include "../subsystems/led.h"
+#include "core/log.h"
+#include "core/command.h"
+#include "subsystems/led.h"
 
 /**
 * Pattern is a bit-field whose most significant bit is 1, which is read least to most significant,
@@ -11,7 +12,7 @@ typedef uint8_t Pattern;
 class BlinkCommand : public Command
 {
 public:
-	BlinkCommand(Pattern pattern);
+	BlinkCommand(Pattern pattern, const char* name);
 
 protected:
 	void initialize();
@@ -25,4 +26,5 @@ private:
 
 	int _counter = 0;
 	Pattern _pattern;
+	const char* _name;
 };

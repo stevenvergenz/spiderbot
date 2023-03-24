@@ -10,6 +10,8 @@
             "includePath": [
                 "/home/steven/Projects/spiderbot/include",
                 "/home/steven/Projects/spiderbot/src",
+                "/home/steven/Projects/spiderbot/lib/arduino-shim/include",
+                "/home/steven/Projects/spiderbot/lib/arduino-shim/src",
                 "/home/steven/Projects/spiderbot/.pio/libdeps/uno/Vector/src",
                 "/home/steven/.platformio/packages/framework-arduino-avr/cores/arduino",
                 "/home/steven/.platformio/packages/framework-arduino-avr/variants/standard",
@@ -25,6 +27,8 @@
                 "path": [
                     "/home/steven/Projects/spiderbot/include",
                     "/home/steven/Projects/spiderbot/src",
+                    "/home/steven/Projects/spiderbot/lib/arduino-shim/include",
+                    "/home/steven/Projects/spiderbot/lib/arduino-shim/src",
                     "/home/steven/Projects/spiderbot/.pio/libdeps/uno/Vector/src",
                     "/home/steven/.platformio/packages/framework-arduino-avr/cores/arduino",
                     "/home/steven/.platformio/packages/framework-arduino-avr/variants/standard",

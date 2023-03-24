@@ -6,10 +6,10 @@ class SequentialCommandGroup : public Command
 {
 public:
 	void end(bool interrupted);
+	~SequentialCommandGroup();
 
 protected:
 	SequentialCommandGroup(Vector<Command*>* commands);
-	~SequentialCommandGroup();
 	void initialize();
 	void execute();
 	bool isFinished();

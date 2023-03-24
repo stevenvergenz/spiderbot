@@ -40,7 +40,6 @@ private:
 
 public:
 	BlinkMorseCommand(const char* phrase);
-	~BlinkMorseCommand();
 
 private:
 	static Vector<Command*>* stringToCommandList(const char* phrase);

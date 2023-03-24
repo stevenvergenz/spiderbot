@@ -1,12 +1,16 @@
 #include "commands/blink.h"
 
-BlinkCommand::BlinkCommand(Pattern pattern) : Command()
+BlinkCommand::BlinkCommand(Pattern pattern, const char* name)
 {
 	_pattern = pattern;
+	_name = name;
 }
 
 void BlinkCommand::initialize()
 {
+	Log::trace("BlinkCommand.initialize");
+
+	Command::initialize();
 	addRequirements(&Led::instance());
 	_counter = 0;
 }
@@ -38,5 +42,8 @@ bool BlinkCommand::isFinished()
 
 void BlinkCommand::end(bool isInterrupted)
 {
+	Log::trace("BlinkCommand.end");
+
+	Command::end(isInterrupted);
 	Led::instance().setLit(false);
 }

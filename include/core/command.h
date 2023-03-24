@@ -11,6 +11,7 @@ class Command : public Ticker
 public:
 	void tick();
 	virtual void end(bool isInterrupted);
+	virtual ~Command();
 
 protected:
 	Command();

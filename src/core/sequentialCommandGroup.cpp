@@ -20,6 +20,7 @@ void SequentialCommandGroup::initialize()
 	Command::initialize();
 
 	activeCommandIdx = 0;
+	activeCommand()->schedule();
 }
 
 void SequentialCommandGroup::execute()
@@ -39,7 +40,7 @@ void SequentialCommandGroup::execute()
 
 bool SequentialCommandGroup::isFinished()
 {
-	return _commands->size() <= activeCommandIdx;
+	return activeCommandIdx >= _commands->size();
 }
 
 void SequentialCommandGroup::end(bool interrupted)

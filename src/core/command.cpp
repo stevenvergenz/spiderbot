@@ -5,11 +5,17 @@ Command::Command()
 	isInitialized = false;
 }
 
+Command::~Command()
+{
+	
+}
+
 void Command::tick()
 {
 	if (!isInitialized)
 	{
 		initialize();
+		isInitialized = true;
 	}
 
 	execute();
@@ -20,7 +26,10 @@ void Command::tick()
 	}
 }
 
-void Command::initialize() { }
+void Command::initialize()
+{
+	isInitialized = true;
+}
 
 void Command::execute() { }
 

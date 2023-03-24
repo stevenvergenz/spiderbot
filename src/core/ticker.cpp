@@ -1,36 +1,39 @@
 #include "core/ticker.h"
 
-Ticker* Ticker::tickers[Ticker::maxTickers];
-uint16_t Ticker::tickerSlots = 0;
+Ticker* Ticker::s_tickers[Ticker::s_maxTickers];
+uint16_t Ticker::s_tickerSlots = 0;
 
 void Ticker::schedule()
 {
-	for (uint8_t slot = 0; slot < Ticker::maxTickers; slot++)
+	for (uint8_t slot = 0; slot < Ticker::s_maxTickers; slot++)
 	{
 		uint16_t slotFlag = 1 << slot;
-		if (!(Ticker::tickerSlots & slotFlag))
+		if (!(Ticker::s_tickerSlots & slotFlag))
 		{
-			Ticker::tickers[slot] = this;
-			tickerSlot = slot;
+			Ticker::s_tickers[slot] = this;
+			_tickerSlot = slot;
 		}
 	}
 }
 
 void Ticker::unschedule()
 {
-	Ticker::tickers[tickerSlot] = nullptr;
-	tickerSlot = 0;
+	Ticker::s_tickers[_tickerSlot] = nullptr;
+	_tickerSlot = 0;
 }
 
 bool Ticker::isScheduled()
 {
-	return Ticker::tickers[tickerSlot] == this;
+	return Ticker::s_tickers[_tickerSlot] == this;
 }
 
 void Ticker::updateTickers()
 {
-	for (Ticker* t : Ticker::tickers)
+	for (Ticker* t : Ticker::s_tickers)
 	{
-		t->tick();
+		if (t != nullptr)
+		{
+			t->tick();
+		}
 	}
 }

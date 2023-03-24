@@ -1,4 +1,8 @@
+#ifdef ARDUINO
 #include <Arduino.h>
+#else
+#include <ArduinoShim.h>
+#endif
 
 int main()
 {

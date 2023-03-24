@@ -1,19 +1,21 @@
+#ifdef ARDUINO
 #include <Arduino.h>
+#else
+#include <ArduinoShim.h>
+#endif
+#include "core/log.h"
 #include "core/ticker.h"
 #include "robot.h"
 
-int main(int argc, char **argv)
+void setup()
 {
-	Serial.begin(9600);
-	Serial.println("abcdefg");
+	Log::trace("Main.setup");
 	
-	Robot robot;
+	Robot::instance().schedule();
+}
 
-	while(true)
-	{
-		Ticker::updateTickers();
-		delay(200);
-	}
-
-	return 0;
+void loop()
+{
+	Ticker::updateTickers();
+	delay(2000);
 }
