@@ -35,7 +35,7 @@ void Log::log(const LogLevel level, const char* message)
 		isInitialized = true;
 	}
 
-	if (level >= Log::level)
+	if (level <= Log::level)
 	{
 		char levelLabel =
 			level == LogLevel::error ? 'E' :

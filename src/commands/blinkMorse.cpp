@@ -3,7 +3,7 @@
 constexpr const Pattern BlinkMorseCommand::MORSE[26];
 
 BlinkMorseCommand::BlinkMorseCommand(const char* phrase)
-	: SequentialCommandGroup(stringToCommandList(phrase))
+	: SequentialCommandGroup(phrase, stringToCommandList(phrase))
 {
 
 }
@@ -22,7 +22,7 @@ Vector<Command*>* BlinkMorseCommand::stringToCommandList(const char* phrase)
 		Serial.print("Building blink command for ");
 		Serial.println(*i);
 		Pattern p = isUpperCase(*i) ? MORSE[*i - 'A'] : isLowerCase(*i) ? MORSE[*i - 'a'] : ERR;
-		list->push_back(new BlinkCommand(p, i));
+		list->push_back(new BlinkCommand(i, p));
 	}
 
 	return list;

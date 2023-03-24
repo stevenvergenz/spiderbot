@@ -7,7 +7,7 @@ Led& Led::instance()
 }
 
 
-Led::Led()
+Led::Led() : Subsystem("Led")
 {
 	pinMode(Constants::LED_PIN, OUTPUT);
 	_isLit = false;

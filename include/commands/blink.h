@@ -12,7 +12,7 @@ typedef uint8_t Pattern;
 class BlinkCommand : public Command
 {
 public:
-	BlinkCommand(Pattern pattern, const char* name);
+	BlinkCommand( const char* name, Pattern pattern);
 
 protected:
 	void initialize();
@@ -26,5 +26,4 @@ private:
 
 	int _counter = 0;
 	Pattern _pattern;
-	const char* _name;
 };

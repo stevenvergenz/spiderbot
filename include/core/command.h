@@ -1,5 +1,6 @@
 #pragma once
 #include <stdarg.h>
+#include "core/log.h"
 #include "ticker.h"
 
 class Command;
@@ -14,7 +15,7 @@ public:
 	virtual ~Command();
 
 protected:
-	Command();
+	Command(const char* name);
 	virtual void initialize();
 	virtual void execute();
 	virtual bool isFinished() = 0;

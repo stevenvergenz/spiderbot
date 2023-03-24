@@ -1,9 +1,8 @@
 #include "commands/blink.h"
 
-BlinkCommand::BlinkCommand(Pattern pattern, const char* name)
+BlinkCommand::BlinkCommand(const char* name, Pattern pattern) : Command(name)
 {
 	_pattern = pattern;
-	_name = name;
 }
 
 void BlinkCommand::initialize()
@@ -17,6 +16,8 @@ void BlinkCommand::initialize()
 
 void BlinkCommand::execute()
 {
+	Log::trace("BlinkCommand.execute");
+
 	int ticks = (_pattern & 0b1) ? BlinkCommand::s_longTicks : BlinkCommand::s_shortTicks;
 	if (_counter < ticks)
 	{
@@ -37,12 +38,20 @@ void BlinkCommand::execute()
 
 bool BlinkCommand::isFinished()
 {
+	Log::trace("BlinkCommand.isFinished");
 	return _pattern <= 0b1;
 }
 
 void BlinkCommand::end(bool isInterrupted)
 {
-	Log::trace("BlinkCommand.end");
+	if (isInterrupted)
+	{
+		Log::trace("BlinkCommand.end(true)");
+	}
+	else
+	{
+		Log::trace("BlinkCommand.end(false)");
+	}
 
 	Command::end(isInterrupted);
 	Led::instance().setLit(false);

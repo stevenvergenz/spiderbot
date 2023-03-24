@@ -14,7 +14,7 @@ public:
 	void release(Command* owner);
 
 protected:
-	Subsystem();
+	Subsystem(const char* name);
 	~Subsystem();
 
 private:

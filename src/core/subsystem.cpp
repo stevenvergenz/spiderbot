@@ -1,6 +1,6 @@
 #include "core/subsystem.h"
 
-Subsystem::Subsystem()
+Subsystem::Subsystem(const char* name) : Ticker(name)
 {
 	schedule();
 }

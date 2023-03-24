@@ -4,17 +4,22 @@
 #else
 #include <ArduinoShim.h>
 #endif
-#include "../constants.h"
+#include "core/log.h"
+#include "constants.h"
 
 class Ticker
 {
 public:
 	static void updateTickers();
+	const char* name;
 	virtual void tick() = 0;
 
 	virtual void schedule();
 	virtual void unschedule();
 	bool isScheduled();
+
+protected:
+	Ticker(const char* name);
 
 private:
 	static constexpr uint8_t s_maxTickers = 16;

@@ -11,7 +11,7 @@ Robot& Robot::instance()
 	return *_instance;
 }
 
-Robot::Robot() : _blinkMorse("SOS")
+Robot::Robot() : Ticker("Robot"), _blinkMorse("SOS")
 {
 	
 }
@@ -20,7 +20,6 @@ void Robot::schedule()
 {
 	Log::trace("Robot.schedule");
 
-	Ticker::schedule();
 	_blinkMorse.schedule();
 }
 

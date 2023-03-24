@@ -19,8 +19,6 @@ class Log
 public:
 	static constexpr LogLevel level = LogLevel::trace;
 
-	static void init();
-
 	static void error(const char* message);
 	static void warn(const char* message);
 	static void info(const char* message);

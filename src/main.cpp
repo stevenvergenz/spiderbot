@@ -17,5 +17,5 @@ void setup()
 void loop()
 {
 	Ticker::updateTickers();
-	delay(2000);
+	delay(200);
 }

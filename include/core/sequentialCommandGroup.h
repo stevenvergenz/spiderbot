@@ -1,5 +1,6 @@
 #pragma once
 #include <Vector.h>
+#include "core/log.h"
 #include "command.h"
 
 class SequentialCommandGroup : public Command
@@ -9,7 +10,7 @@ public:
 	~SequentialCommandGroup();
 
 protected:
-	SequentialCommandGroup(Vector<Command*>* commands);
+	SequentialCommandGroup(const char* name, Vector<Command*>* commands);
 	void initialize();
 	void execute();
 	bool isFinished();
