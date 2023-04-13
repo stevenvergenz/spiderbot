@@ -4,7 +4,7 @@
 #else
 #include <ArduinoShim.h>
 #endif
-#include "core/log.h"
+#include <ArduinoLog.h>
 #include "constants.h"
 
 class Ticker

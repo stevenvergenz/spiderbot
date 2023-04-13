@@ -10,17 +10,15 @@ Ticker::Ticker(const char* name)
 
 void Ticker::schedule()
 {
-	Log::trace("Ticker.schedule");
+	Log.traceln("Ticker.schedule");
 	for (uint8_t slot = 0; slot < Ticker::s_maxTickers; slot++)
 	{
 		uint16_t slotFlag = 1 << slot;
 		if (!(Ticker::s_tickerSlots & slotFlag))
 		{
-			//Serial.print("Assigning new ticker ");
-			//Serial.print(name);
-			//Serial.print(" to slot ");
-			//Serial.println(slot);
+			Log.infoln("Assigning new ticker %s to slot %d", name, slot);
 			Ticker::s_tickers[slot] = this;
+			Ticker::s_tickerSlots |= slotFlag;
 			_tickerSlot = slot;
 			break;
 		}
@@ -29,8 +27,9 @@ void Ticker::schedule()
 
 void Ticker::unschedule()
 {
-	Log::trace("Ticker.unschedule");
+	Log.traceln("Ticker.unschedule");
 	Ticker::s_tickers[_tickerSlot] = nullptr;
+	Ticker::s_tickerSlots &= ~(1 << _tickerSlot);
 	_tickerSlot = 0;
 }
 

@@ -19,7 +19,7 @@ void SequentialCommandGroup::initialize()
 {
 	Command::initialize();
 
-	Log::trace("SequentialCommandGroup.initialize");
+	Log.traceln("SequentialCommandGroup.initialize");
 	activeCommandIdx = 0;
 	activeCommand()->schedule();
 }
@@ -27,31 +27,33 @@ void SequentialCommandGroup::initialize()
 void SequentialCommandGroup::execute()
 {
 	Command::execute();
-	Log::trace("SequentialCommandGroup.execute");
+	Log.traceln("SequentialCommandGroup.execute");
 
-	if (!isFinished() && !activeCommand()->isScheduled())
+	Command* command = activeCommand();
+	if (command != nullptr && !command->isScheduled())
 	{
-		Log::debug("Done with letter, going to next");
+		Log.verboseln("Done with letter, going to next");
 		activeCommandIdx++;
 	}
 	
-	if (!activeCommand()->isScheduled())
+	command = activeCommand();
+	if (command != nullptr && !command->isScheduled())
 	{
-		Log::debug("Scheduling next command");
-		activeCommand()->schedule();
+		Log.verboseln("Scheduling next command");
+		command->schedule();
 	}
 }
 
 bool SequentialCommandGroup::isFinished()
 {
-	Log::trace("SequentialCommandGroup.isFinished");
+	Log.traceln("SequentialCommandGroup.isFinished (%d of %d)", activeCommandIdx+1, _commands->size());
 	return activeCommandIdx >= _commands->size();
 }
 
 void SequentialCommandGroup::end(bool interrupted)
 {
 	Command::end(interrupted);
-	Log::trace("SequentialCommandGroup.end");
+	Log.traceln("SequentialCommandGroup.end");
 	if (!isFinished())
 	{
 		activeCommand()->end(interrupted);

@@ -1,5 +1,5 @@
 #pragma once
-#include "core/log.h"
+#include <ArduinoLog.h>
 #include "core/ticker.h"
 #include "commands/blinkMorse.h"
 

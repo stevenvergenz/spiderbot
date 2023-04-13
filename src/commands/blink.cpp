@@ -7,7 +7,7 @@ BlinkCommand::BlinkCommand(const char* name, Pattern pattern) : Command(name)
 
 void BlinkCommand::initialize()
 {
-	Log::trace("BlinkCommand.initialize");
+	Log.traceln("BlinkCommand(%s).initialize", name);
 
 	Command::initialize();
 	addRequirements(&Led::instance());
@@ -16,7 +16,7 @@ void BlinkCommand::initialize()
 
 void BlinkCommand::execute()
 {
-	Log::trace("BlinkCommand.execute");
+	Log.traceln("BlinkCommand(%s).execute", name);
 
 	int ticks = (_pattern & 0b1) ? BlinkCommand::s_longTicks : BlinkCommand::s_shortTicks;
 	if (_counter < ticks)
@@ -38,20 +38,13 @@ void BlinkCommand::execute()
 
 bool BlinkCommand::isFinished()
 {
-	Log::trace("BlinkCommand.isFinished");
+	Log.traceln("BlinkCommand(%s).isFinished", name);
 	return _pattern <= 0b1;
 }
 
 void BlinkCommand::end(bool isInterrupted)
 {
-	if (isInterrupted)
-	{
-		Log::trace("BlinkCommand.end(true)");
-	}
-	else
-	{
-		Log::trace("BlinkCommand.end(false)");
-	}
+	Log.traceln("BlinkCommand(%s).end(%d)", name, isInterrupted);
 
 	Command::end(isInterrupted);
 	Led::instance().setLit(false);

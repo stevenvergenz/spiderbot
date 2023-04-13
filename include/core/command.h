@@ -1,6 +1,6 @@
 #pragma once
 #include <stdarg.h>
-#include "core/log.h"
+#include <ArduinoLog.h>
 #include "ticker.h"
 
 class Command;

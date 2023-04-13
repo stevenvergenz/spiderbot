@@ -3,13 +3,15 @@
 #else
 #include <ArduinoShim.h>
 #endif
-#include "core/log.h"
+#include <ArduinoLog.h>
 #include "core/ticker.h"
 #include "robot.h"
 
 void setup()
 {
-	Log::trace("Main.setup");
+	Serial.begin(9600);
+	Log.begin(LOG_LEVEL_VERBOSE, &Serial, true);
+	Log.traceln("Main.setup");
 	
 	Robot::instance().schedule();
 }
@@ -17,5 +19,5 @@ void setup()
 void loop()
 {
 	Ticker::updateTickers();
-	delay(200);
+	delay(100);
 }

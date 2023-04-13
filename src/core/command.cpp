@@ -12,7 +12,7 @@ Command::~Command()
 
 void Command::tick()
 {
-	Log::trace("Command.tick");
+	Log.traceln("Command.tick");
 	if (!isInitialized)
 	{
 		initialize();
@@ -29,7 +29,7 @@ void Command::tick()
 
 void Command::initialize()
 {
-	Log::trace("Command.initialize");
+	Log.traceln("Command.initialize");
 	isInitialized = true;
 }
 
@@ -39,7 +39,7 @@ bool Command::isFinished() { return true; }
 
 void Command::end(bool isInterrupted)
 {
-	Log::trace("Command.end");
+	Log.traceln("Command.end");
 	if (requirement != nullptr)
 	{
 		requirement->release(this);

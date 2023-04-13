@@ -1,6 +1,6 @@
 #pragma once
 #include <Vector.h>
-#include "core/log.h"
+#include <ArduinoLog.h>
 #include "command.h"
 
 class SequentialCommandGroup : public Command

@@ -19,10 +19,9 @@ Vector<Command*>* BlinkMorseCommand::stringToCommandList(const char* phrase)
 
 	for (const char* i = phrase; *i != '\0'; i++)
 	{
-		Serial.print("Building blink command for ");
-		Serial.println(*i);
+		Log.infoln("Building blink command for %c", *i);
 		Pattern p = isUpperCase(*i) ? MORSE[*i - 'A'] : isLowerCase(*i) ? MORSE[*i - 'a'] : ERR;
-		list->push_back(new BlinkCommand(i, p));
+		list->push_back(new BlinkCommand(new char[2] { *i, '\0' }, p));
 	}
 
 	return list;

@@ -1,5 +1,10 @@
 #pragma once
-#include "core/log.h"
+#ifdef ARDUINO
+#include <Arduino.h>
+#else
+#include <ArduinoShim.h>
+#endif
+#include <ArduinoLog.h>
 #include "core/command.h"
 #include "subsystems/led.h"
 
@@ -12,7 +17,7 @@ typedef uint8_t Pattern;
 class BlinkCommand : public Command
 {
 public:
-	BlinkCommand( const char* name, Pattern pattern);
+	BlinkCommand(const char* name, Pattern pattern);
 
 protected:
 	void initialize();

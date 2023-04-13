@@ -27,4 +27,5 @@ void Subsystem::release(Command* owner)
 	{
 		exit(1);
 	}
+	activeCommand = nullptr;
 }
