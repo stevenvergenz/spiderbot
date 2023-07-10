@@ -54,9 +54,9 @@ void SequentialCommandGroup::end(bool interrupted)
 {
 	Command::end(interrupted);
 	Log.traceln("SequentialCommandGroup.end");
-	if (!isFinished())
+	if (activeCommand() != nullptr && interrupted)
 	{
-		activeCommand()->end(interrupted);
+		activeCommand()->end(true);
 	}
 }
 

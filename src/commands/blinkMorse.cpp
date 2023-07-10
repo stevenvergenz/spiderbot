@@ -11,7 +11,7 @@ BlinkMorseCommand::BlinkMorseCommand(const char* phrase)
 Vector<Command*>* BlinkMorseCommand::stringToCommandList(const char* phrase)
 {
 	int length;
-	for (length = 0; phrase[length] != '\0'; length++) { }
+	for (length = 1; phrase[length-1] != '\0'; length++) { }
 
 	Command** buffer = new Command*[length];
 	Vector<Command*>* list = new Vector<Command*>();
@@ -23,6 +23,8 @@ Vector<Command*>* BlinkMorseCommand::stringToCommandList(const char* phrase)
 		Pattern p = isUpperCase(*i) ? MORSE[*i - 'A'] : isLowerCase(*i) ? MORSE[*i - 'a'] : ERR;
 		list->push_back(new BlinkCommand(new char[2] { *i, '\0' }, p));
 	}
+
+	list->push_back(new BlinkCommand("break", BREAK));
 
 	return list;
 }

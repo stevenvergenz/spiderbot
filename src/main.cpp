@@ -10,7 +10,7 @@
 void setup()
 {
 	Serial.begin(9600);
-	Log.begin(LOG_LEVEL_VERBOSE, &Serial, true);
+	Log.begin(LOG_LEVEL_INFO, &Serial, true);
 	Log.traceln("Main.setup");
 	
 	Robot::instance().schedule();

@@ -12,13 +12,14 @@ void BlinkCommand::initialize()
 	Command::initialize();
 	addRequirements(&Led::instance());
 	_counter = 0;
+	_activePattern = _pattern;
 }
 
 void BlinkCommand::execute()
 {
 	Log.traceln("BlinkCommand(%s).execute", name);
 
-	int ticks = (_pattern & 0b1) ? BlinkCommand::s_longTicks : BlinkCommand::s_shortTicks;
+	int ticks = (_activePattern & 0b1) ? BlinkCommand::s_longTicks : BlinkCommand::s_shortTicks;
 	if (_counter < ticks)
 	{
 		Led::instance().setLit(true);
@@ -31,7 +32,7 @@ void BlinkCommand::execute()
 	}
 	else
 	{
-		_pattern = _pattern >> 1;
+		_activePattern = _activePattern >> 1;
 		_counter = 0;
 	}
 }
@@ -39,7 +40,7 @@ void BlinkCommand::execute()
 bool BlinkCommand::isFinished()
 {
 	Log.traceln("BlinkCommand(%s).isFinished", name);
-	return _pattern <= 0b1;
+	return _activePattern <= 0b1;
 }
 
 void BlinkCommand::end(bool isInterrupted)

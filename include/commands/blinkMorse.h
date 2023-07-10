@@ -37,6 +37,7 @@ private:
 	};
 
 	static constexpr Pattern ERR = 0b111111;
+	static constexpr Pattern BREAK = 0b110001;
 
 public:
 	BlinkMorseCommand(const char* phrase);

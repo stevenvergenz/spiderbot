@@ -26,9 +26,10 @@ protected:
 	void end(bool isInterrupted);
 
 private:
-	static constexpr uint8_t s_shortTicks = 1;
+	static constexpr uint8_t s_shortTicks = 2;
 	static constexpr uint8_t s_longTicks = 4;
 
 	int _counter = 0;
 	Pattern _pattern;
+	Pattern _activePattern;
 };

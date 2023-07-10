@@ -43,6 +43,7 @@ void Command::end(bool isInterrupted)
 	if (requirement != nullptr)
 	{
 		requirement->release(this);
+		requirement = nullptr;
 	}
 	unschedule();
 	isInitialized = false;

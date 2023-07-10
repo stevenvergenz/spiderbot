@@ -23,9 +23,9 @@ void Subsystem::claim(Command* owner)
 
 void Subsystem::release(Command* owner)
 {
-	if (activeCommand != owner)
+	if (activeCommand != nullptr && activeCommand != owner)
 	{
-		exit(1);
+		Log.warningln("The wrong command is releasing subsystem %s", name);
 	}
 	activeCommand = nullptr;
 }
